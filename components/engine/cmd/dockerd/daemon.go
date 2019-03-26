@@ -81,7 +81,7 @@ func (cli *DaemonCli) start(opts *daemonOptions) (err error) {
 	uuid.Loggerf = logrus.Warnf
 
 	opts.SetDefaultOptions(opts.flags)
-
+	//TODO load进来什么内容了？
 	if cli.Config, err = loadDaemonCliConfig(opts); err != nil {
 		return err
 	}
@@ -150,11 +150,12 @@ func (cli *DaemonCli) start(opts *daemonOptions) (err error) {
 			logrus.WithError(err).Warn("cannot set sticky bit on files under XDG_RUNTIME_DIR")
 		}
 	}
-
+	//NOTE 启动API Server
 	serverConfig, err := newAPIServerConfig(cli)
 	if err != nil {
 		return errors.Wrap(err, "failed to create API server")
 	}
+
 	cli.api = apiserver.New(serverConfig)
 
 	hosts, err := loadListeners(cli, serverConfig)

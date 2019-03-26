@@ -12,7 +12,6 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/containerd/containerd/runtime/v1/linux"
 	"github.com/docker/docker/cmd/dockerd/hack"
 	"github.com/docker/docker/daemon"
 	"github.com/docker/docker/daemon/config"
